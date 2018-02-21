@@ -1,0 +1,16 @@
+%body
+  %section.register-user
+    %section.register-user
+      %header
+        %h1
+          Create a new Account
+        .row
+          .col-sm-6
+            = form_for @user do |f|
+              = render "shared/errors", object: @user
+              .form-group
+                = f.text_field :username, class: "form-control", required: true, minlength: 3, placeholder: "username"
+              .form-group
+                = f.password_field :password, class: "form-control", required: true, minlength: 8, placeholder: "password"
+              .form-group
+                = f.button "Register", class: "btn btn-success"

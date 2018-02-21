@@ -1,0 +1,10 @@
+= form_for @link do |f|
+  = render "shared/errors", object: @link
+  .form-group
+    = f.text_field :title, required: true, class: "form-control", placeholder: "title"
+  .form-group
+    = f.url_field :url, class: "form-control", placeholder: "url"
+  .form-group
+    = f.text_area :description, class: "form-control", placeholder: "description", rows: 15
+  .form-group
+    = f.button :submit, class: "btn btn-success"

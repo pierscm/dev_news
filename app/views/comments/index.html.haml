@@ -1,0 +1,16 @@
+%section.sitewide-comments
+  - @comments.each do |comment|
+    .comment
+      %p.comment-owner
+        %strong
+          = comment.user.username
+        %span.comment-created.small
+          = time_ago_in_words(comment.created_at)
+          ago
+        - if logged_in? && current_user.owns_comment?(comment)
+          %span.edit-comment
+            = link_to 'edit',  edit_link_comment_path(comment.link, comment)
+          %span.delete-comment
+            = link_to 'delete', link_comment_path(comment.link, comment), method: :delete, data: { confirm: 'Are you sure?' }
+      %p
+        = comment.body

@@ -1,0 +1,29 @@
+!!!
+%html
+  %head
+    %meta(content="text/html; charset=UTF-8" http-equiv="Content-Type")/
+    %title DevNews
+    = csrf_meta_tags
+    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track": "reload"
+    = javascript_include_tag "application", "data-turbolinks-track": "reload"
+  
+  %body
+  %header
+    %navbar.navbar-default.static-top
+      = link_to "DEVNews", root_path, class: "logo"
+      .navlinks
+        = link_to "New", "#"
+        = link_to "Comments", comments_path
+        - unless logged_in?
+          = link_to "Signup", new_user_path
+          = link_to "Login", new_session_path
+        - if logged_in?
+          = link_to "Add Link", new_link_path
+          = link_to "Logout", sessions_path, method: :delete
+
+  %container-fluid
+    %main
+      - if flash[:notice]
+        %p.alert.alert-info
+          = flash[:notice]
+      = yield
